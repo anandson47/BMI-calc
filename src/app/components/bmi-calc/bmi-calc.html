@@ -1,0 +1,46 @@
+<div
+  class="vh-100 d-flex flex-column align-items-center justify-content-center bg-light"
+>
+  <div
+    class="d-flex flex-column align-items-center justify-content-center border rounded p-4 bg-white shadow-sm"
+  >
+    <h1 class="my-4">BMI Calculator</h1>
+    <form name="bmiForm" novalidate>
+      <div class="form-group">
+        <label for="weight">Weight (kg):</label>
+        <input
+          type="number"
+          id="weight"
+          ng-model="weight"
+          class="my-2 form-control"
+          min="0"
+          max="5"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="height">Height (m):</label>
+        <input
+          type="number"
+          id="height"
+          ng-model="height"
+          class="my-2 form-control"
+          required
+          min="0"
+          max="5"
+        />
+        <button class="btn btn-primary" ng-click="calculateBMI()">
+          Calculate BMI
+        </button>
+        <div *ngIf="resultCalculated" class="result" ng-if="bmi">
+          <h3>Your BMI is: {{ bmi }}</h3>
+          <p *ngIf="bmi < 0">Please enter valid weight and height.</p>
+          <p *ngIf="bmi < 18.5">You are underweight.</p>
+          <p *ngIf="bmi >= 18.5 && bmi < 24.9">You have a normal weight.</p>
+          <p *ngIf="bmi >= 25 && bmi < 29.9">You are overweight.</p>
+          <p *ngIf="bmi >= 30">You are obese.</p>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
